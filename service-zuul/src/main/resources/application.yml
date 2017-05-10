@@ -1,0 +1,24 @@
+#首先向eureka注册自己,端口为8769,服务名为service-zuul
+#以/api-a/ 开头的请求都指向service-ribbon
+#以/api-b/开头的请求都指向service-feign
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+server:
+  port: 8764
+spring:
+  application:
+    name: service-zuul
+zuul:
+  routes:
+    api-a:
+      path: /api-a/**
+      serviceId: service-ribbon
+    api-b:
+      path: /api-b/**
+      serviceId: service-feign
+
+feign:
+  hystrix:
+    enabled: true
