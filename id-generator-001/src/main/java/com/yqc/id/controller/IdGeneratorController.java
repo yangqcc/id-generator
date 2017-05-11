@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.netflix.eureka.serviceregistry.EurekaRegistration;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -20,9 +21,9 @@ public class IdGeneratorController {
     @Autowired
     private EurekaRegistration registration;
 
-    @GetMapping("/getId")
-    public String getId() {
+    @GetMapping("/getId/{key}")
+    public String getId(@PathVariable String key) {
         log.debug(registration.getServiceId() + "==" + registration.getNonSecurePort());
-        return "我是A： " + idGenerator.generateId();
+        return "我是C： " + idGenerator.generateId(key);
     }
 }

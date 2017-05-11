@@ -18,7 +18,6 @@ import org.springframework.web.client.RestTemplate;
  * Created by yangqc on 2017/4/26.
  */
 @SpringBootApplication
-//用于注册eureka客户端
 @RestController
 @EnableEurekaClient
 public class ServiceClientApplication {
@@ -32,22 +31,6 @@ public class ServiceClientApplication {
         SpringApplication.run(ServiceClientApplication.class, args);
     }
 
-    /*@RequestMapping("/hi")
-    public String home(@RequestParam String name) {
-        LOG.log(Level.INFO, "service-client /hi");
-        System.out.println(name + "*****************");
-        System.out.println("this is one!");
-        return "hi,my name is " + name;
-    }
-
-    @RequestMapping("/service-client")
-    public String info() {
-        LOG.log(Level.INFO, "service-client /service-client");
-        String result = restTemplate.getForObject("http://localhost:8766/showName", String.class);
-        System.out.println(result);
-        return result;
-    }
-*/
     @Bean
     public RestTemplate getRestTemplate() {
         return new RestTemplate();
